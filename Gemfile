@@ -3,7 +3,6 @@
 source "https://rubygems.org"
 
 gem "sinatra"
+gem 'sinatra-contrib'
 gem "rackup"
 gem "puma"
-
-gem 'rack-test', '~> 2.1'

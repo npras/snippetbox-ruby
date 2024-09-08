@@ -1,11 +1,9 @@
-require 'sinatra/base'
+require './lib/controllers/server.rb'
 
-class MainController < Sinatra::Base
-
-  set :public_folder, File.join(SnippetBox.root, 'static')
+class MainController < Server
 
   get '/' do
-    "Hi"
+    erb :home
   end
 
   get '/snippet/view/:id' do |id|
