@@ -1,4 +1,5 @@
 require './lib/controllers/server.rb'
+require './db/models/snippet.rb'
 
 class MainController < Server
 
@@ -15,7 +16,12 @@ class MainController < Server
   end
 
   post '/snippet/create' do
-    "POST SnippetCreate"
+    title = 'O rails'
+    content = "O rails\nClimb Mount Fuji,\nBut slowly, slowly!\n\n– Kobayashi Issa"
+    expires_at = 10
+    model = SnippetBox::Models::Snippet.new(settings.db)
+    id = model.insert(title, content, expires_at)
+    redirect to("/snippet/view/#{id}"), 303
   end
 
 end

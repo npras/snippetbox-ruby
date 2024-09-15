@@ -1,5 +1,7 @@
 require './lib/snippet_box.rb'
-Dir.glob('./lib/{controllers}/*.rb').each { |file| require file }
+
+Dir.glob('./db/{models}/*.rb').each { |f| require f }
+Dir.glob('./lib/{controllers}/*.rb').each { |f| require f }
 
 run MainController
 

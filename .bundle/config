@@ -1,0 +1,2 @@
+---
+BUNDLE_BUILD__PG: "--with-pg-config=/opt/homebrew/Cellar/postgresql@16/16.2_1/bin/pg_config"
