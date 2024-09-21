@@ -5,7 +5,12 @@ module SnippetBox
   end
 
   def self.db
-    @_db ||= Sequel.connect('postgres://web:golanger1234567@localhost:5432/snippetbox')
+    username = 'web'
+    password = 'golanger1234567'
+    host = 'localhost'
+    port = 5432
+    db = 'snippetbox'
+    @_db ||= Sequel.connect("postgres://#{username}:#{password}@#{host}:#{port}/#{db}")
   end
 
 end
