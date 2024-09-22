@@ -1,5 +1,27 @@
 <% content_for :title, 'HOME' %>
 
 <h2>Latest Snippets</h2>
-<p>There's nothing to see here yet!</p>
-<p>But dongly home…</p>
+
+<% if snippets.empty? %>
+
+  <p>There's nothing to see here yet!</p>
+  <p>But dongly home…</p>
+
+<% else %>
+
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Created</th>
+      <th>ID</th>
+    </tr>
+    <% snippets.each do |s| %>
+    <tr>
+      <td><a href="/snippet/view/<%= s[:id] %>"><%= s[:title] %></a></td>
+      <td><%= s[:created_at] %></td>
+      <td>#<%= s[:id] %></td>
+    </tr>
+    <% end %>
+  </table>
+
+<% end %>

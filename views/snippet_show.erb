@@ -1,0 +1,14 @@
+<% content_for :title, "Snippet: ##{snippet[:id]}" %>
+
+
+<div class="snippet">
+  <div class="metadata">
+    <strong><%= snippet[:title] %></strong>
+    <span><%= snippet[:id] %></span>
+  </div>
+  <pre><code><%= snippet[:content] %></code></pre>
+  <div class="metadata">
+    <time><%= snippet[:created_at] %></time>
+    <time><%= snippet[:expires_at] %></time>
+  </div>
+</div>

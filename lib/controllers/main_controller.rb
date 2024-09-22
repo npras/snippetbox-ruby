@@ -4,11 +4,13 @@ require './db/models/snippet.rb'
 class MainController < Server
 
   get '/' do
-    erb :home
+    snippets = snippet.latest
+    erb :home, locals: { snippets: snippets }
   end
 
   get '/snippet/view/:id' do |id|
-    "GET SnippetView #{id}"
+    item = snippet.get id
+    erb :snippet_show, locals: { snippet: item }
   end
 
   get '/snippet/create' do
@@ -16,16 +18,19 @@ class MainController < Server
   end
 
   post '/snippet/create' do
-    title = '11O rails'
-    content = "11O rails\nClimb Mount Fuji,\nBut slowly, slowly!\n\n– Kobayashi Issa"
+    title = 'TIMETEST GOLANG'
+    content = "TIMETEST rails\nClimb Mount Fuji,\nBut slowly, slowly!\n\n– Kobayashi Issa"
     expires_at = 10
-    id = snippet.insert title, content, expires_at
+    id = snippet.insert(title:, content:, expires_at:)
     redirect to("/snippet/view/#{id}"), 303
   end
+
+  ####
 
   helpers do
     def snippet
       SnippetBox::Models::Snippet.new settings.db
     end
   end
+
 end
