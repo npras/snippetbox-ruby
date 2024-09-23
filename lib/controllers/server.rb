@@ -22,4 +22,8 @@ class Server < Sinatra::Base
     set :logger, logger
   end
 
+  before do
+    @year = Time.now.getutc.year
+  end
+
 end
