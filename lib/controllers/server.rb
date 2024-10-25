@@ -14,16 +14,22 @@ class Server < Sinatra::Base
     set :public_folder, File.join(SnippetBox.root, 'public')
     set :db, SnippetBox.db
   end
+  
+  configure :development do
+    set :show_exceptions, :after_handler
+  end
 
   configure :development, :production do
-    #logger = Logger.new(File.open("#{root}/log/#{environment}.log", 'a'))
-    logger = Logger.new $stdout
-    logger.level = Logger::DEBUG if development?
-    set :logger, logger
+    set :logger, Logger.new(STDOUT)
   end
 
   before do
     @year = Time.now.getutc.year
   end
+
+  # middlewares
+  use CommonHeaders
+  use RequestLogger, logger
+  use RecoverException, logger
 
 end

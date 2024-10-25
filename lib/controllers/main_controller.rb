@@ -4,18 +4,22 @@ require './db/models/snippet.rb'
 class MainController < Server
 
   get '/' do
+    fail "BLOW UP!"
     snippets = snippet.latest
     erb :home, locals: { snippets: snippets }
   end
+
 
   get '/snippet/view/:id' do |id|
     item = snippet.get id
     erb :snippet_show, locals: { snippet: item }
   end
 
+
   get '/snippet/create' do
     "GET SnippetCreate"
   end
+
 
   post '/snippet/create' do
     title = 'TIMETEST GOLANG'
@@ -24,6 +28,7 @@ class MainController < Server
     id = snippet.insert(title:, content:, expires_at:)
     redirect to("/snippet/view/#{id}"), 303
   end
+
 
   ####
 

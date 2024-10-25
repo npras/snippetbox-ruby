@@ -15,11 +15,18 @@ module SnippetBox::Models
     end
 
     def get id
-      @db.where(id:).where{ _1.expires_at > utc_now }.first
+      @db
+        .where(id:)
+        .where{ _1.expires_at > utc_now }
+        .first
     end
 
     def latest
-      @db.where{ _1.expires_at > utc_now }.reverse_order(:id).limit(10).all
+      @db
+        .where{ _1.expires_at > utc_now }
+        .reverse_order(:id)
+        .limit(10)
+        .all
     end
 
     private def utc_now = DateTime.now.new_offset(0)
